@@ -1,0 +1,39 @@
+/**
+ * Philosophy Quest - Game Styles
+ * Sierra Online EGA aesthetic
+ */
+
+:root {
+  /* EGA Palette */
+  --ega-black: #000000;
+  --ega-blue: #0000aa;
+  --ega-green: #00aa00;
+  --ega-cyan: #00aaaa;
+  --ega-red: #aa0000;
+  --ega-magenta: #aa00aa;
+  --ega-brown: #aa5500;
+  --ega-light-gray: #aaaaaa;
+  --ega-dark-gray: #555555;
+  --ega-light-blue: #5555ff;
+  --ega-light-green: #55ff55;
+  --ega-light-cyan: #55ffff;
+  --ega-light-red: #ff5555;
+  --ega-light-magenta: #ff55ff;
+  --ega-yellow: #ffff55;
+  --ega-white: #ffffff;
+  
+  /* Game Colors */
+  --parser-bg: var(--ega-black);
+  --parser-text: var(--ega-light-green);
+  --parser-prompt: var(--ega-yellow);
+  --parser-input: var(--ega-white);
+}
+
+.caret {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
