@@ -9,8 +9,31 @@
 
 ## The Story
 
-### Premise
-Brock Thunderstone, star quarterback for the State University Fighting Philosophers, is two days away from the National Championship when the NCAA discovers his philosophy credits are... "creative." He must earn a legitimate Master's degree in Philosophy by Saturday or be benched.
+### Prologue: The Heisman
+**The Ceremony** - New York City, December
+
+Bud "The Arm" Armstrong wins the Heisman Trophy. The speech is rambling, emotional, heartfelt. Too heartfelt. The sports reporters notice his pupils. The broadcast cameras catch everything.
+
+**What happens**: 
+- Victory party at the hotel
+- Someone gives Bud Molly ("just to celebrate")
+- He meets **Dana Steele** - ESPN's rising star, covering the ceremony
+- The chemistry is instant, the judgment is impaired
+- They find a quiet hallway. They think it's quiet.
+- **The security camera sees everything.**
+
+**Monday Morning**: The video leaks. Dana's career survives (she was the professional one). Bud's... doesn't. NCAA launches investigation. State University needs a sacrificial lamb to save their bowl eligibility.
+
+**Enter Brock Thunderstone** - Backup quarterback, clean record, suddenly starting the National Championship. Until the NCAA finds his "creative" philosophy credits.
+
+### The Setup
+Brock, now thrust into the spotlight, has a problem:
+- National Championship game: **Saturday**
+- NCAA compliance office watching
+- Must prove academic legitimacy
+- Must earn a **Master's degree in Philosophy** by game day
+
+The university will do anything to save face after the Bud scandal. Including creating an impossible academic sprint.
 
 ### The Weekend
 - **Friday**: The ultimatum, meeting roommate Chad, finding the Philosophy Building
