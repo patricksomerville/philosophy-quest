@@ -1,0 +1,233 @@
+{
+  "name": "Philosophy Quest Assets - Nano Banana Pro",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Philosophy Quest Asset Definitions for Nano Banana Pro\n// Optimized for Nano Banana's image generation capabilities\n\nconst assets = [\n  // HIGH PRIORITY CHARACTERS\n  {\n    id: \"char_alex\",\n    name: \"Alex Chen\",\n    category: \"characters\",\n    priority: \"high\",\n    prompt: \"Cute Asian female grad student, round intellectual glasses, lavender cardigan over white blouse, dark jeans, carrying coffee cup, warm approachable smile, comic book illustration style, bold clean outlines, vibrant colors teal magenta accents, detailed facial features, transparent background, character design sheet style\"\n  },\n  {\n    id: \"char_dj\",\n    name: \"DJ Jones\",\n    category: \"characters\",\n    priority: \"high\",\n    prompt: \"African American former linebacker turned philosopher, athletic build, thick-rimmed glasses, Nietzsche philosophy tank top, sweatpants, headphones around neck, confident intellectual expression, comic book illustration style, bold outlines, warm lighting, detailed shading, transparent background, character design\"\n  },\n  {\n    id: \"char_dean\",\n    name: \"Dean Harriet Thorne\",\n    category: \"characters\",\n    priority: \"high\",\n    prompt: \"Powerful woman in her 50s, gray streak in professional hair, navy power suit, white high-collar blouse, minimal pearl jewelry, intelligent authoritative expression, former academic, comic book illustration style, bold outlines, cool professional lighting, detailed, transparent background\"\n  },\n  \n  // FOUR PHILOSOPHERS\n  {\n    id: \"char_plato\",\n    name: \"Plato (Shadow)\",\n    category: \"characters\",\n    priority: \"medium\",\n    prompt: \"Shadow puppet silhouette of ancient Greek philosopher Plato, dramatic profile, toga outline, beard, gesturing hand teaching, black silhouette on transparent background, dramatic theatrical pose, flickering torchlight effect, shadow theater aesthetic\"\n  },\n  {\n    id: \"char_mill\",\n    name: \"John Stuart Mill\",\n    category: \"characters\",\n    priority: \"medium\",\n    prompt: \"Victorian gentleman as trolley conductor, 19th century uniform with brass buttons, conductor cap, holding track lever, kind distressed expression about moral dilemmas, comic book illustration style, detailed period clothing, transparent background\"\n  },\n  {\n    id: \"char_nietzsche\",\n    name: \"Coach Williams / Nietzsche\",\n    category: \"characters\",\n    priority: \"medium\",\n    prompt: \"Intense football coach secretly Friedrich Nietzsche, vintage 1980s track suit, whistle around neck, shaved head, piercing intense eyes, athletic power stance holding playbook, existential philosopher hidden in sports, comic book style, bold outlines, transparent background\"\n  },\n  {\n    id: \"char_sartre\",\n    name: \"Jean-Paul Sartre\",\n    category: \"characters\",\n    priority: \"medium\",\n    prompt: \"French philosopher as judgmental hipster barista, black apron, striped shirt with rolled sleeves, judging eyes, slight smirk, holding coffee cup, wiping counter, comic book illustration style, warm coffee shop lighting, transparent background\"\n  },\n  \n  // SUPPORTING CHARACTERS\n  {\n    id: \"char_chad\",\n    name: \"Chad\",\n    category: \"characters\",\n    priority: \"low\",\n    prompt: \"Loyal frat bro, muscular build, confused friendly expression, backwards baseball cap, polo shirt, cargo shorts, holding red solo cup, comic book illustration style, bold outlines, party atmosphere, transparent background\"\n  },\n  {\n    id: \"char_trip\",\n    name: \"Trip\",\n    category: \"characters\",\n    priority: \"low\",\n    prompt: \"Stoner philosopher, spaced out expression, messy hair, tie-dye shirt, relaxed clothing, understands Hegel but too chill to explain, Zen peaceful vibe, comic book illustration style, hazy colors, transparent background\"\n  },\n  \n  // HIGH PRIORITY BACKGROUNDS\n  {\n    id: \"background_campus_quad\",\n    name: \"Campus Quad\",\n    category: \"backgrounds\",\n    priority: \"high\",\n    prompt: \"University campus quad scene, afternoon golden hour lighting, classical founder statue with football helmet humorously placed on head, park benches, water fountain, autumn trees with falling leaves, students walking in background, Philosophy Building gothic architecture visible, college atmosphere, comic book illustration style, vibrant teal magenta mustard yellow color palette, detailed but not cluttered, wide shot, 16:9 aspect ratio\"\n  },\n  {\n    id: \"background_library\",\n    name: \"University Library\",\n    category: \"backgrounds\",\n    priority: \"high\",\n    prompt: \"University library interior at night, study tables with scattered philosophy books, whiteboards with diagrams, empty coffee cups, harsh fluorescent institutional lighting transitioning to warm, academic atmosphere of breakthrough and discovery, bookshelves, quiet study space, comic book illustration style, dramatic lighting, wide shot\"\n  },\n  {\n    id: \"background_platos_cave\",\n    name: \"Plato's Cave\",\n    category: \"backgrounds\",\n    priority: \"high\",\n    prompt: \"Underground cave with shadow puppet theater, rocky stone walls, shadows dancing on walls from torchlight, mysterious ancient atmosphere, puppet silhouettes visible, dramatic lighting with teal deep navy shadows and warm orange torchlight, allegory of the cave visualized, comic book illustration style, atmospheric, wide shot\"\n  },\n  \n  // MEDIUM PRIORITY BACKGROUNDS\n  {\n    id: \"background_trolley_station\",\n    name: \"Trolley Station\",\n    category: \"backgrounds\",\n    priority: \"medium\",\n    prompt: \"Campus trolley station, vintage red trolley car on tracks, track switching lever prominent, two sets of tracks diverging, overhead fluorescent lighting, sign reading TO CAMPUS TO DOWNTOWN, industrial concrete architecture, tense moral decision atmosphere, gray and red and yellow, comic book illustration style, wide shot\"\n  },\n  {\n    id: \"background_gym\",\n    name: \"The Gym\",\n    category: \"backgrounds\",\n    priority: \"medium\",\n    prompt: \"University weight room gym interior, barbells weight racks, mirrors, lockers, bookshelf with philosophy books used as weights, bright fluorescent lighting, atmosphere of determination and physical mental strength, Nietzschean self-overcoming, cool grays with warm accents, comic book illustration style, wide shot\"\n  },\n  {\n    id: \"background_coffee_shop\",\n    name: \"The Grounds of Being\",\n    category: \"backgrounds\",\n    priority: \"medium\",\n    prompt: \"Hipster coffee shop interior The Grounds of Being, exposed brick walls, uncomfortable vintage chairs, gleaming espresso machine, chalkboard menu with pretentious drink names, warm natural light from large windows, barista counter, cozy judgmental existential atmosphere, warm browns creams brick red, comic book illustration style, wide shot\"\n  },\n  \n  // LOW PRIORITY BACKGROUNDS\n  {\n    id: \"background_philosophy_building\",\n    name: \"Philosophy Building\",\n    category: \"backgrounds\",\n    priority: \"low\",\n    prompt: \"Grand university hallway interior, portraits of famous philosophers on walls in gilded frames, trophy case, elevator doors, wooden office doors, academic gravitas and prestige, sage green and amber lighting, institutional but distinguished, comic book illustration style, wide shot\"\n  },\n  {\n    id: \"background_dean_office\",\n    name: \"Dean's Office\",\n    category: \"backgrounds\",\n    priority: \"low\",\n    prompt: \"Modern athletic director office interior, sports trophies on shelves mixed with philosophy books, large executive desk, window overlooking football stadium, framed Ethics for Athletes diploma on wall, sterile corporate masking academic past, power conflict atmosphere, cool grays warm wood tones, comic book style, wide shot\"\n  },\n  {\n    id: \"background_committee_room\",\n    name: \"Thesis Committee Room\",\n    category: \"backgrounds\",\n    priority: \"low\",\n    prompt: \"Conference room for thesis defense, long mahogany table with three professor chairs on one end intimidating, whiteboard with philosophical diagrams equations, water pitcher on table, ominous tribunal atmosphere, academic interrogation, cool institutional lighting, comic book illustration style, wide shot\"\n  },\n  {\n    id: \"background_stadium\",\n    name: \"The Stadium\",\n    category: \"backgrounds\",\n    priority: \"low\",\n    prompt: \"College football stadium locker room interior, wooden lockers, championship atmosphere, dramatic cinematic lighting, green turf visible through doorway, excitement pressure anticipation, helmets jerseys equipment, comic book illustration style, wide shot dramatic angle\"\n  },\n  \n  // ITEMS\n  {\n    id: \"item_red_cup\",\n    name: \"Red Solo Cup\",\n    category: \"items\",\n    priority: \"high\",\n    prompt: \"Iconic red plastic solo cup party cup, slightly crushed used look, plastic sheen and texture, isolated object on transparent background, comic book illustration style, bold outlines, detailed\"\n  },\n  {\n    id: \"item_big_book\",\n    name: \"The Philosophy Playbook\",\n    category: \"items\",\n    priority: \"medium\",\n    prompt: \"Massive three-ring binder bursting with papers, color-coded tabs sticking out, well-worn used condition, labeled PHILOSOPHY PLAYBOOK, handwritten notes and diagrams visible, football play notation mixed with philosophy concepts, 3-inch thick binder, isolated object transparent background, comic book style\"\n  },\n  {\n    id: \"item_philosophy_books\",\n    name: \"Philosophy Books\",\n    category: \"items\",\n    priority: \"medium\",\n    prompt: \"Stack of vintage leather-bound philosophy books, worn spines with gold lettering titles Aesthetics Logic Ethics Metaphysics Hegel, old library aesthetic classic scholarly, isolated object transparent background, comic book illustration style\"\n  },\n  {\n    id: \"item_shadow_puppet\",\n    name: \"Shadow Puppet\",\n    category: \"items\",\n    priority: \"medium\",\n    prompt: \"Ancient Greek shadow puppet theater prop, paper cutout style, toga silhouette philosopher figure with beard, gesturing teaching pose, theatrical dramatic, isolated object transparent background\"\n  },\n  {\n    id: \"item_trolley_lever\",\n    name: \"Trolley Lever\",\n    category: \"items\",\n    priority: \"medium\",\n    prompt: \"Industrial brass track switching lever, Victorian era railway equipment, well-worn patina, mechanical functional, isolated object transparent background, comic book illustration style detailed\"\n  },\n  {\n    id: \"item_latte_art\",\n    name: \"Latte Art\",\n    category: \"items\",\n    priority: \"low\",\n    prompt: \"Coffee cup from above, latte art in foam creating abstract chaotic existential shape, frothy delicate pattern, top-down view, isolated object transparent background\"\n  },\n  {\n    id: \"item_thesis_draft\",\n    name: \"Thesis Draft\",\n    category: \"items\",\n    priority: \"low\",\n    prompt: \"Stack of printed academic papers with coffee stains handwritten corrections scribbles, some pages crumpled, Ethics and Athletics title visible, messy to polished progression, isolated object transparent background, comic book style\"\n  }\n];\n\nreturn assets.map(asset => ({\n  json: asset\n}));"
+      },
+      "id": "define-assets",
+      "name": "Define Assets for Nano Banana",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-batch",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.nano-banana.pro/v1/generate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "body": {
+          "prompt": "={{ $json.prompt }}",
+          "negative_prompt": "blurry, low quality, distorted, deformed, ugly, duplicate, watermark, signature, text, logo, cropped, worst quality, low resolution",
+          "width": 1024,
+          "height": 1024,
+          "num_inference_steps": 30,
+          "guidance_scale": 7.5,
+          "scheduler": "DPMSolverMultistep",
+          "seed": -1
+        },
+        "options": {}
+      },
+      "id": "generate-nano-banana",
+      "name": "Generate (Nano Banana Pro)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process Nano Banana response\n// Nano Banana returns base64 image data\n\nconst response = $json;\n\n// Handle different response formats\nlet base64Image;\nif (response.image) {\n  base64Image = response.image;\n} else if (response.images && response.images[0]) {\n  base64Image = response.images[0];\n} else if (response.data && response.data.image) {\n  base64Image = response.data.image;\n} else {\n  throw new Error('Unexpected response format from Nano Banana');\n}\n\n// Remove data URL prefix if present\nif (base64Image.includes(',')) {\n  base64Image = base64Image.split(',')[1];\n}\n\nconst binaryData = Buffer.from(base64Image, 'base64');\nconst asset = $('Split In Batches').item.json;\n\nreturn [{\n  binary: {\n    data: {\n      data: binaryData,\n      mimeType: 'image/png',\n      fileName: `${asset.id}.png`\n    }\n  },\n  json: {\n    ...asset,\n    generationId: response.id || response.generationId || Date.now()\n  }\n}];"
+      },
+      "id": "process-response",
+      "name": "Process Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "fileName": "=/Users/patricksomerville/Projects/philosophy-quest/assets/generated/nano_banana/{{ $('Split In Batches').item.json.id }}.png"
+      },
+      "id": "save-file",
+      "name": "Save Image to Disk",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const asset = $('Split In Batches').item.json;\nreturn [{\n  json: {\n    id: asset.id,\n    name: asset.name,\n    category: asset.category,\n    priority: asset.priority,\n    status: 'generated',\n    path: `assets/generated/nano_banana/${asset.id}.png`,\n    timestamp: new Date().toISOString(),\n    generator: 'nano_banana_pro'\n  }\n}];"
+      },
+      "id": "log-generation",
+      "name": "Log Generation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1450, 300]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "dataMode",
+        "options": {}
+      },
+      "id": "aggregate-results",
+      "name": "Aggregate Results",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [1650, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const results = $input.all()[0].json;\nconst manifest = {\n  project: 'Philosophy Quest',\n  generator: 'Nano Banana Pro',\n  generatedAt: new Date().toISOString(),\n  totalAssets: results.length,\n  assets: results\n};\n\nconst jsonString = JSON.stringify(manifest, null, 2);\nconst binaryData = Buffer.from(jsonString);\n\nreturn [{\n  binary: {\n    data: {\n      data: binaryData,\n      mimeType: 'application/json',\n      fileName: '_manifest_nano_banana.json'\n    }\n  },\n  json: manifest\n}];"
+      },
+      "id": "create-manifest",
+      "name": "Create Manifest",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1850, 300]
+    },
+    {
+      "parameters": {
+        "fileName": "=/Users/patricksomerville/Projects/philosophy-quest/assets/generated/nano_banana/_manifest.json"
+      },
+      "id": "save-manifest",
+      "name": "Save Manifest",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [2050, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Define Assets for Nano Banana",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Define Assets for Nano Banana": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Generate (Nano Banana Pro)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate (Nano Banana Pro)": {
+      "main": [
+        [
+          {
+            "node": "Process Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Response": {
+      "main": [
+        [
+          {
+            "node": "Save Image to Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Image to Disk": {
+      "main": [
+        [
+          {
+            "node": "Log Generation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Generation": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Results": {
+      "main": [
+        [
+          {
+            "node": "Create Manifest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Manifest": {
+      "main": [
+        [
+          {
+            "node": "Save Manifest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true
+  },
+  "tags": [
+    {"name": "philosophy-quest"},
+    {"name": "nano-banana"},
+    {"name": "asset-generation"}
+  ]
+}

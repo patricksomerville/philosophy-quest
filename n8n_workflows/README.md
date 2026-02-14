@@ -23,7 +23,21 @@ These N8N workflows automatically generate the needed game assets (characters, b
 
 **Total**: 26 assets
 
-### 2. `asset_generation_stability_ai.json` (Alternative)
+### 2. `asset_generation_nano_banana.json` (RECOMMENDED)
+**Service**: Nano Banana Pro  
+**Best For**: High-quality comic book style art, transparent backgrounds  
+**Cost**: ~$0.02-0.03 per image  
+**Speed**: Fast
+
+**Generates**: ALL 26 assets with optimized prompts for Nano Banana's strengths
+
+**Advantages**:
+- Excellent for comic book illustration style
+- Better transparent backgrounds for characters
+- Optimized for character design
+- Good consistency across generations
+
+### 3. `asset_generation_stability_ai.json` (Alternative)
 **Service**: Stability AI  
 **Best For**: Faster, cheaper generation  
 **Cost**: ~$0.01 per image  
@@ -62,6 +76,14 @@ Sign up at: https://n8n.io/cloud
 1. Get API key from: https://platform.openai.com/api-keys
 2. In N8N: Settings → Credentials → Add Credential → OpenAI API
 
+#### Nano Banana Pro (RECOMMENDED)
+1. Get API key from: https://nano-banana.pro/
+2. In N8N: Settings → Credentials → Add Credential → HTTP Header Auth
+   - Name: "Nano Banana Pro API"
+   - Header Name: `Authorization`
+   - Header Value: `Bearer YOUR_API_KEY`
+   - Or use: `X-API-Key` header depending on their authentication method
+
 #### Stability AI (optional alternative)
 1. Get API key from: https://platform.stability.ai/
 2. In N8N: Settings → Credentials → Add Credential → HTTP Header Auth
@@ -81,6 +103,13 @@ Sign up at: https://n8n.io/cloud
 
 ### Step 2: Configure Credentials
 
+**For Nano Banana Pro (Recommended):**
+1. In the workflow, find the "Generate (Nano Banana Pro)" node
+2. Click on it
+3. Under "Credential for HTTP Header Auth", select or create your Nano Banana credential
+4. Save
+
+**For DALL-E 3:**
 1. In the workflow, find the "Generate Image (DALL-E)" node
 2. Click on it
 3. Under "Credential for HTTP Header Auth", select or create your OpenAI credential
@@ -105,8 +134,19 @@ mkdir -p ~/Projects/philosophy-quest/assets/generated
 
 ## Running the Pipeline
 
-### Option 1: Manual Trigger
-1. Open the workflow in N8N
+### Option 1: Manual Trigger (Nano Banana Recommended)
+1. Open the `asset_generation_nano_banana.json` workflow in N8N
+2. Click "Execute Workflow"
+3. Wait for completion (26 assets, ~10-15 minutes)
+
+**Why Nano Banana?**
+- Optimized for comic book illustration style
+- Better transparent backgrounds
+- Character design focus
+- Cost-effective
+
+### Alternative: DALL-E 3 Workflow
+1. Open the `asset_generation_pipeline.json` workflow
 2. Click "Execute Workflow"
 3. Wait for completion (26 assets, ~15-20 minutes)
 
@@ -220,6 +260,12 @@ The `_manifest.json` contains metadata for all generated assets.
 ---
 
 ## Cost Estimation
+
+### Nano Banana Pro (RECOMMENDED)
+- 26 assets × $0.02-0.03 = **~$0.52-0.78 per run**
+- Quality: High
+- Consistency: Excellent for comic book style
+- Best for: Characters with transparent backgrounds
 
 ### DALL-E 3 (OpenAI)
 - 26 assets × $0.04 = **~$1.04 per run**
