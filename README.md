@@ -8,11 +8,11 @@
 
 **Prologue**: Bud Armstrong won the Heisman. Then he took Molly and accidentally had sex with Dana Steele (ESPN) on camera. The video leaked. The university needs a scandal-free hero.
 
-**Enter Brock Thunderstone**:
+**Enter Brad**:
 - National Championship game: **Saturday**
 - NCAA compliance watching after the Bud scandal
 - Must earn a **Master's degree in Philosophy** by game day
-- The university will do *anything* to prove their athletes are scholars
+- Has an incomplete thesis from 2021 and no idea what "epistemology" means
 
 A weekend crash course through Plato's Cave, the Trolley Problem, and Nietzsche's Gym.
 
