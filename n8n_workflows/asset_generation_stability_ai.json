@@ -1,0 +1,135 @@
+{
+  "name": "Philosophy Quest Assets - Stability AI",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// High priority assets only for Stability AI (faster, cheaper than DALL-E)\nconst assets = [\n  {\n    id: \"char_alex\",\n    name: \"Alex Chen\",\n    prompt: \"Cute female grad student, Asian, shoulder-length dark hair in ponytail, round intellectual glasses, lavender cardigan over white blouse, dark jeans, carrying coffee cup, warm approachable expression, comic book illustration style, bold outlines, teal and magenta accents, transparent background\"\n  },\n  {\n    id: \"char_dj\",\n    name: \"DJ Jones\",\n    prompt: \"Former linebacker turned philosopher, African American, athletic build with slight gut, thick-rimmed glasses, philosophy tank top 'NIETZSCHE', sweatpants, headphones around neck, confident intellectual demeanor, comic book illustration style, bold outlines, transparent background\"\n  },\n  {\n    id: \"background_campus_quad\",\n    name: \"Campus Quad\",\n    prompt: \"University campus quad, afternoon golden hour, founder statue with football helmet, benches, fountain, trees, Philosophy Building visible, bustling collegiate atmosphere, comic book illustration style, teal magenta mustard yellow palette, 1280x720px\"\n  },\n  {\n    id: \"background_library\",\n    name: \"University Library\",\n    prompt: \"University library at night, study tables with books, whiteboards, student studying surrounded by open philosophy books, empty coffee cups, defeat and breakthrough atmosphere, comic book illustration style, 1280x720px\"\n  }\n];\n\nreturn assets.map(asset => ({ json: asset }));"
+      },
+      "id": "define-priority-assets",
+      "name": "Define Priority Assets",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-batch",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.stability.ai/v2beta/stable-image/generate/core",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "body": {
+          "prompt": "={{ $json.prompt }}",
+          "output_format": "png",
+          "aspect_ratio": "1:1"
+        },
+        "options": {}
+      },
+      "id": "generate-stability",
+      "name": "Generate (Stability AI)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Stability AI returns base64 encoded image\nconst base64Image = $json.image;\nconst binaryData = Buffer.from(base64Image, 'base64');\n\nreturn [{\n  binary: {\n    data: {\n      data: binaryData,\n      mimeType: 'image/png',\n      fileName: `${$('Split In Batches').item.json.id}.png`\n    }\n  },\n  json: $('Split In Batches').item.json\n}];"
+      },
+      "id": "process-image",
+      "name": "Process Image Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "fileName": "=/Users/patricksomerville/Projects/philosophy-quest/assets/generated/{{ $('Split In Batches').item.json.id }}.png"
+      },
+      "id": "save-file",
+      "name": "Save to Disk",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Define Priority Assets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Define Priority Assets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Generate (Stability AI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate (Stability AI)": {
+      "main": [
+        [
+          {
+            "node": "Process Image Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Image Data": {
+      "main": [
+        [
+          {
+            "node": "Save to Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "name": "Philosophy Quest Asset Generation Pipeline",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Asset definitions based on docs/LOCATION_ASSET_INDEX.md and docs/ART_STYLE_GUIDE.md\nconst assets = {\n  characters: [\n    {\n      id: \"char_alex\",\n      name: \"Alex Chen\",\n      type: \"character\",\n      priority: \"high\",\n      prompt: \"Cute female grad student, Asian, shoulder-length dark hair often in ponytail when working, round intellectual glasses, lavender cardigan over white blouse, dark jeans, comfortable flats, carrying coffee cup and messenger bag, warm approachable expression, comic book illustration style, bold outlines, teal and magenta accents, transparent background, 832x1248px\"\n    },\n    {\n      id: \"char_dj\",\n      name: \"DJ Jones\",\n      type: \"character\",\n      priority: \"high\",\n      prompt: \"Former linebacker turned philosopher, African American, 6'2\", 240lbs, athletic build with slight gut, short hair fading, thick-rimmed glasses, philosophy tank top showing 'NIETZSCHE', sweatpants, high-end sneakers, headphones around neck, confident intellectual demeanor, comic book illustration style, bold outlines, warm lighting, transparent background, 832x1248px\"\n    },\n    {\n      id: \"char_dean\",\n      name: \"Dean Harriet Thorne\",\n      type: \"character\",\n      priority: \"high\",\n      prompt: \"Powerful woman in her 50s, gray streak in professional hair, navy power suit, white high-collar blouse, minimal jewelry, intelligent slightly sad eyes, controlled authoritative expression, former academic who sold out for administration, comic book illustration style, bold outlines, cool professional lighting, transparent background, 832x1248px\"\n    },\n    {\n      id: \"char_plato\",\n      name: \"Plato (Shadow Puppet)\",\n      type: \"character\",\n      priority: \"medium\",\n      prompt: \"Shadow puppet silhouette of ancient Greek philosopher Plato, toga outline, beard, gesturing hand, profile view, dramatic pose, black silhouette on transparent background, flickering torchlight effect suggested, comic book shadow style, 832x1248px\"\n    },\n    {\n      id: \"char_mill\",\n      name: \"John Stuart Mill (Conductor)\",\n      type: \"character\",\n      priority: \"medium\",\n      prompt: \"Victorian gentleman as trolley conductor, navy uniform with brass buttons, conductor cap, holding lever, kind face with distressed expression about moral dilemmas, 19th century philosopher aesthetic, comic book illustration style, bold outlines, industrial background suggested, transparent background, 832x1248px\"\n    },\n    {\n      id: \"char_nietzsche\",\n      name: \"Coach Williams / Nietzsche\",\n      type: \"character\",\n      priority: \"medium\",\n      prompt: \"Intense football coach secretly Friedrich Nietzsche, 40-year veteran, vintage 1980s track suit, whistle around neck, shaved head, piercing intense eyes, athletic power stance, holding playbook, existential philosophy hidden in sports pep talks, comic book illustration style, bold outlines, gym lighting, transparent background, 832x1248px\"\n    },\n    {\n      id: \"char_sartre\",\n      name: \"Jean-Paul Sartre (Barista)\",\n      type: \"character\",\n      priority: \"medium\",\n      prompt: \"French philosopher as judgmental hipster barista, black apron with 'The Grounds of Being' logo, striped shirt with rolled sleeves, judging eyes, slight smirk, holding coffee cup, wiping counter slowly, comic book illustration style, bold outlines, warm coffee shop lighting, transparent background, 832x1248px\"\n    },\n    {\n      id: \"char_chad\",\n      name: \"Chad\",\n      type: \"character\",\n      priority: \"low\",\n      prompt: \"Loyal frat bro, muscular but not bright, confused friendly expression, backwards baseball cap, tank top or polo, cargo shorts, holding red solo cup or doing keg stand, comic book illustration style, bold outlines, party lighting, transparent background, 832x1248px\"\n    },\n    {\n      id: \"char_trip\",\n      name: \"Trip\",\n      type: \"character\",\n      priority: \"low\",\n      prompt: \"Stoner philosopher, permanently spaced out, staring at ceiling, messy hair, tie-dye or relaxed clothing, actually understands Hegel but too high to explain it, Zen peaceful expression, comic book illustration style, bold outlines, hazy lighting, transparent background, 832x1248px\"\n    }\n  ],\n  backgrounds: [\n    {\n      id: \"background_campus_quad\",\n      name: \"Campus Quad\",\n      type: \"background\",\n      priority: \"high\",\n      prompt: \"University campus quad, afternoon golden hour, founder statue with football helmet, benches, fountain, trees with autumn leaves, students walking in background, Philosophy Building visible, Gym in distance, Coffee Shop sign, bustling collegiate atmosphere, comic book illustration style, teal and magenta and mustard yellow color palette, detailed but not cluttered, 1280x720px\"\n    },\n    {\n      id: \"background_platos_cave\",\n      name: \"Plato's Cave\",\n      type: \"background\",\n      priority: \"high\",\n      prompt: \"Underground cave with shadow puppet theater, rocky walls, shadows dancing on walls, torchlight flickering, mysterious ancient atmosphere, puppet silhouettes on cave wall, dramatic shadows, teal and deep navy and warm orange torchlight, comic book illustration style, 1280x720px\"\n    },\n    {\n      id: \"background_trolley_station\",\n      name: \"Trolley Station\",\n      type: \"background\",\n      priority: \"medium\",\n      prompt: \"Campus trolley station, red vintage trolley car on tracks, track switching lever, two sets of tracks diverging, overhead fluorescent lighting, dramatic shadows, sign reading 'TO CAMPUS / TO DOWNTOWN', industrial concrete, tense decision-point atmosphere, gray and red and yellow warning stripes, comic book illustration style, 1280x720px\"\n    },\n    {\n      id: \"background_gym\",\n      name: \"The Gym\",\n      type: \"background\",\n      priority: \"medium\",\n      prompt: \"University weight room, athletic facility, barbells and weight racks, bookshelf with philosophy books used as weights, mirrors, lockers, bright fluorescent lighting, determination and intensity, cool grays with warm skin tones, Nietzschean atmosphere of self-overcoming, comic book illustration style, 1280x720px\"\n    },\n    {\n      id: \"background_coffee_shop\",\n      name: \"The Grounds of Being\",\n      type: \"background\",\n      priority: \"medium\",\n      prompt: \"Hipster coffee shop interior, exposed brick walls, uncomfortable chairs, espresso machine gleaming, menu board with pretentious drink names, warm natural light from windows, barista counter, cozy but judgmental atmosphere, warm browns and creams and brick red, comic book illustration style, 1280x720px\"\n    },\n    {\n      id: \"background_philosophy_building\",\n      name: \"Philosophy Building Hallway\",\n      type: \"background\",\n      priority: \"low\",\n      prompt: \"Grand university hallway, portraits of dead philosophers on walls, trophy case, elevator, wooden doors to offices, academic gravitas, sage green and amber lighting, institutional but prestigious, comic book illustration style, 1280x720px\"\n    },\n    {\n      id: \"background_dean_office\",\n      name: \"Dean's Office\",\n      type: \"background\",\n      priority: \"low\",\n      prompt: \"Modern athletic director office, sports trophies mixed with philosophy books, large desk, window overlooking stadium, framed 'Ethics for Atheletes' on wall, sterile corporate feel masking academic past, power and conflict atmosphere, cool grays with warm wood tones, comic book illustration style, 1280x720px\"\n    },\n    {\n      id: \"background_committee_room\",\n      name: \"Thesis Committee Room\",\n      type: \"background\",\n      priority: \"low\",\n      prompt: \"Conference room, long table with three chairs on one end, whiteboard with philosophical diagrams, water pitcher, ominous tribunal atmosphere, academic interrogation, cool institutional lighting, comic book illustration style, 1280x720px\"\n    },\n    {\n      id: \"background_stadium\",\n      name: \"The Stadium\",\n      type: \"background\",\n      priority: \"low\",\n      prompt: \"College football stadium, locker room or field view, championship atmosphere, crowd noise suggested, everything at stake, dramatic lighting, green turf or wooden lockers, excitement and pressure, comic book illustration style, 1280x720px\"\n    },\n    {\n      id: \"background_library\",\n      name: \"University Library\",\n      type: \"background\",\n      priority: \"high\",\n      prompt: \"University library at night, study tables with books, whiteboards, harsh fluorescent lights gradually warming, student studying alone surrounded by open philosophy books, empty coffee cups, defeat and breakthrough atmosphere, institutional transitioning to hope, comic book illustration style, 1280x720px\"\n    }\n  ],\n  items: [\n    {\n      id: \"item_red_cup\",\n      name: \"Red Solo Cup\",\n      type: \"item\",\n      priority: \"high\",\n      prompt: \"Iconic red plastic solo cup, party cup, slightly crushed, used, plastic sheen, isolated on transparent background, comic book illustration style, 1024x1024px\"\n    },\n    {\n      id: \"item_shadow_puppet\",\n      name: \"Shadow Puppet\",\n      type: \"item\",\n      priority: \"medium\",\n      prompt: \"Ancient Greek shadow puppet, paper cutout style, toga silhouette, beard, gesturing, theatrical, isolated on transparent background, 1024x1024px\"\n    },\n    {\n      id: \"item_trolley_lever\",\n      name: \"Trolley Lever\",\n      type: \"item\",\n      priority: \"medium\",\n      prompt: \"Industrial brass track switching lever, well-worn, Victorian era railway equipment, mechanical, functional, isolated on transparent background, comic book illustration style, 1024x1024px\"\n    },\n    {\n      id: \"item_philosophy_books\",\n      name: \"Philosophy Books\",\n      type: \"item\",\n      priority: \"medium\",\n      prompt: \"Stack of vintage leather-bound philosophy books, worn spines with titles 'Aesthetics', 'Logic', 'Ethics', 'Metaphysics', 'Hegel', old library aesthetic, isolated on transparent background, comic book illustration style, 1024x1024px\"\n    },\n    {\n      id: \"item_latte_art\",\n      name: \"Latte Art\",\n      type: \"item\",\n      priority: \"low\",\n      prompt: \"Coffee cup with latte art in foam, abstract chaotic shape representing existential authenticity, frothy, delicate, top-down view, isolated on transparent background, 1024x1024px\"\n    },\n    {\n      id: \"item_thesis_draft\",\n      name: \"Thesis Draft\",\n      type: \"item\",\n      priority: \"low\",\n      prompt: \"Stack of printed papers with coffee stains and handwritten corrections, academic manuscript, some pages crumpled, 'Ethics and Athletics' title visible, progress from messy to polished versions, isolated on transparent background, comic book illustration style, 1024x1024px\"\n    },\n    {\n      id: \"item_big_book\",\n      name: \"The Philosophy Playbook\",\n      type: \"item\",\n      priority: \"medium\",\n      prompt: \"Massive three-ring binder, color-coded tabs, well-worn from use, labeled 'PHILOSOPHY PLAYBOOK', handwritten notes, diagrams, football play notation mixed with philosophy, 3-inch binder bursting with papers, isolated on transparent background, comic book illustration style, 1024x1024px\"\n    }\n  ]\n};\n\n// Output all assets for processing\nconst output = [];\n\nfor (const [category, items] of Object.entries(assets)) {\n  for (const item of items) {\n    output.push({\n      json: {\n        ...item,\n        category\n      }\n    });\n  }\n}\n\nreturn output;"
+      },
+      "id": "define-assets",
+      "name": "Define Assets",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-batch",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/images/generations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "body": {
+          "model": "dall-e-3",
+          "prompt": "={{ $json.prompt }}",
+          "n": 1,
+          "size": "1024x1024",
+          "quality": "standard",
+          "style": "vivid"
+        },
+        "options": {}
+      },
+      "id": "generate-image",
+      "name": "Generate Image (DALL-E)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.data[0].url }}",
+        "responseFormat": "file",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "download-image",
+      "name": "Download Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "fileName": "=/Users/patricksomerville/Projects/philosophy-quest/assets/generated/{{ $('Split In Batches').item.json.id }}.png"
+      },
+      "id": "save-file",
+      "name": "Save to Disk",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Log generation results\nconst item = $('Split In Batches').item.json;\nreturn [{\n  json: {\n    id: item.id,\n    name: item.name,\n    category: item.category,\n    priority: item.priority,\n    status: 'generated',\n    path: `/assets/generated/${item.id}.png`,\n    timestamp: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "log-result",
+      "name": "Log Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1450, 300]
+    },
+    {
+      "parameters": {
+        "fileName": "=/Users/patricksomerville/Projects/philosophy-quest/assets/generated/_manifest.json"
+      },
+      "id": "save-manifest",
+      "name": "Save Manifest",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [1650, 300]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [{"id":"1","name":"philosophy-quest"},{"id":"2","name":"asset-generation"}],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Define Assets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Define Assets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Generate Image (DALL-E)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Image (DALL-E)": {
+      "main": [
+        [
+          {
+            "node": "Download Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Image": {
+      "main": [
+        [
+          {
+            "node": "Save to Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Disk": {
+      "main": [
+        [
+          {
+            "node": "Log Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
